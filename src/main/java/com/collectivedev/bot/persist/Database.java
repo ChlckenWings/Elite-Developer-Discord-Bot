@@ -61,7 +61,7 @@ public class Database implements AbstractDatabase {
         });
     }
 
-    private void createTables() {
+    public void createTables() {
         try(
                 Connection conn = getConnection();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(Database.class.getResourceAsStream("init.sql")))
