@@ -57,7 +57,7 @@ public class ScriptRunner {
      * Convenience constructor for application
      */
     public ScriptRunner(Connection connection) {
-        this(connection, false, false);
+        this(connection, false, true);
     }
 
     /**
