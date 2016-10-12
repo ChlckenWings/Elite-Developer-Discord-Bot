@@ -57,7 +57,7 @@ public class Main {
     public ExecutorService getExecutorService() {
         if(service == null) {
             String name = "Bot";
-            service = Executors.newCachedThreadPool(new ThreadFactoryBuilder().setNameFormat(name + "Pool #%1$d")
+            service = Executors.newCachedThreadPool(new ThreadFactoryBuilder().setNameFormat(name + " Pool #%1$d")
                     .setThreadFactory(r -> new Thread(new ThreadGroup(name), r)).build());
         }
 
