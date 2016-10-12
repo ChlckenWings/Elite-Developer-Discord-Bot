@@ -26,14 +26,13 @@ public class Main {
         this.logger = new BotLogger("Bot", "bot.log");
 
         this.config = new JsonConfiguration("config.json");
-        this.config.copyDefaults("defaultconfig.json");
 
         this.database = new Database(this.config.get("database").getAsJsonObject());
-        this.database.createTables();
     }
 
     private void start() {
-
+        this.config.copyDefaults("defaultconfig.json");
+        this.database.createTables();
     }
 
     public static Main getInstance() {
