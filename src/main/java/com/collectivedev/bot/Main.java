@@ -19,6 +19,7 @@ public class Main {
     private final JsonConfiguration config;
     private final Database database;
     private final BotLogger logger;
+    private final BotManager botManager;
 
     private Main() {
         instance = this;
@@ -28,6 +29,8 @@ public class Main {
         this.config = new JsonConfiguration("config.json");
 
         this.database = new Database(this.config.get("database").getAsJsonObject());
+
+        this.botManager = new BotManager();
     }
 
     private void start() {
@@ -49,6 +52,14 @@ public class Main {
 
     public BotLogger getLogger() {
         return logger;
+    }
+
+    public BotManager getBotManager() {
+        return botManager;
+    }
+
+    public JsonConfiguration getJsonConfiguration() {
+        return config;
     }
 
     private ExecutorService service;
