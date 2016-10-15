@@ -1,9 +1,6 @@
 package com.collectivedev.bot.task;
 
-import com.collectivedev.bot.Main;
-
 import java.util.concurrent.atomic.AtomicBoolean;
-import java.util.logging.Level;
 
 public class Task implements Runnable {
 
@@ -25,7 +22,7 @@ public class Task implements Runnable {
             try {
                 task.run();
             } catch (Throwable t) {
-                Main.getInstance().getLogger().log(Level.SEVERE, String.format("Task %s encountered an exception", this), t);
+                System.out.println(String.format("Task %s encountered an exception", this));
             }
 
             cancel();
