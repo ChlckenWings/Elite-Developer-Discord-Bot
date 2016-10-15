@@ -9,8 +9,6 @@ public abstract class Command {
     private String usage;
     private String description;
 
-    private int power;
-
     public Command(String name) {
         this(name, "No usage is available for this command", "No description has been set for this command");
     }
@@ -39,14 +37,6 @@ public abstract class Command {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public int getPower() {
-        return power;
-    }
-
-    public void setPower(int power) {
-        this.power = power;
     }
 
     public abstract void execute(Message message, Guild guild, String[] args);
