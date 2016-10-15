@@ -14,7 +14,7 @@ public class CommandDispatcher extends ListenerAdapter {
             return;
         }
 
-        Command command = produceCommand(event.getGuild().getId(), message);
+        Command command = produceCommand(message);
 
         if(command != null) {
             dispatch(command, event);
@@ -24,7 +24,7 @@ public class CommandDispatcher extends ListenerAdapter {
     }
 
     private void dispatch(Command command, GuildMessageReceivedEvent event) {
-        if(!Main.getInstance().getBotManager().canUse(event.getAuthor(), event.getGuild(), command)) {
+        if(!Main.getInstance().getBotManager().canUse(event.getAuthor(), event.getGuild(), command.getName())) {
             event.getMessage().getChannel().sendMessageAsync("No no... no permissions...", null);
             return;
         }
@@ -40,15 +40,15 @@ public class CommandDispatcher extends ListenerAdapter {
         }
     }
 
-    private Command produceCommand(String server, String message) {
+    private Command produceCommand(String message) {
         int length = Main.getInstance().getJsonConfiguration().getString("commandChar").length();
 
         // has args
         if(message.contains(" ")) {
-            return Main.getInstance().getBotManager().getCommand(server, message.substring(length, message.indexOf(" ")));
+            return Main.getInstance().getBotManager().getCommand(message.substring(length, message.indexOf(" ")));
         } else {
             // does not have args
-            return Main.getInstance().getBotManager().getCommand(server, message.substring(length, message.length()));
+            return Main.getInstance().getBotManager().getCommand(message.substring(length, message.length()));
         }
     }
 }
