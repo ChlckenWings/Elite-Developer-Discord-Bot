@@ -6,6 +6,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.*;
+import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
@@ -103,10 +104,10 @@ public class JsonConfiguration {
     }
 
     public void copyDefaults(String fromFile) {
-        destination.getParentFile().mkdirs();
-
         try (InputStream is = getStream(fromFile)) {
             Files.copy(is, destination.toPath());
+        } catch (FileAlreadyExistsException ignored) {
+
         } catch (IOException e) {
             e.printStackTrace();
         }
